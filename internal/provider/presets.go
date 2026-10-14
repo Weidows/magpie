@@ -201,6 +201,16 @@ var presets = []PresetDef{
 			{ID: "plan", Name: "Step Plan", Chat: "https://api.stepfun.com/step_plan/v1", Anthropic: "https://api.stepfun.com/step_plan"},
 			{ID: "api", Name: "Pay as you go", Chat: "https://api.stepfun.com/v1", Anthropic: "https://api.stepfun.com"},
 		}},
+	// 商汤日日新 SenseNova's Token Plan (#749): one key, from
+	// platform.sensenova.cn, and all three APIs at token.sensenova.cn — Chat
+	// Completions and Responses under /v1, Anthropic's at the host's root (its
+	// /anthropic prefix answers 404), so magpie asks /v1/messages there. The
+	// list it serves is the platform's, not the key's plan's: a model the plan
+	// doesn't buy answers 403 "model is not available in the current token
+	// plan", which rests that model alone and leaves the key's others (#1235).
+	{ID: "sensenova", Name: "SenseNova", Note: "日日新 · Token Plan", Icon: "sensenova-color", Kind: KindVendor, Catalog: "sensenova",
+		Chat: "https://token.sensenova.cn/v1", Responses: "https://token.sensenova.cn/v1", Anthropic: "https://token.sensenova.cn",
+		Website: "https://platform.sensenova.cn", KeysURL: "https://platform.sensenova.cn/console"},
 	// Xiaomi MiMo (#174): a Token Plan's tp- key is spent at its region's
 	// own host (China, Singapore, Europe), pay as you go at api.xiaomimimo.com;
 	// each serves chat completions, Responses and Anthropic messages. Each
